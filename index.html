@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+    body{
+  padding: 25px;
+}
+.title {
+	color: #5C6AC4;
+}
+</style>
+
+<body>
+<div class="container py-5">
+  <h2 class="text-center mb-4">Form Booking Photoshoot</h2>
+  <form class="card p-4 shadow" style="max-width: 720px; margin: auto;">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nama Lengkap</label>
+      <input type="text" class="form-control" id="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="pakageType" class="form-label">Tipe Pakage</label>
+      <select class="form-select" id="pakageType" required>
+        <option value="">-- Pilih Tipe Pakage --</option>
+        <option value="pakage">Pakage</option>
+        <option value="friendly">Friendly Pakage</option>
+        <option value="kind">Kind Pakage</option>
+        <option value="family">Family Pakage</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="package" class="form-label">Paket</label>
+      <select class="form-select" id="package" required disabled>
+        <option value="">-- Pilih Paket --</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Tanggal Booking</label>
+      <input type="date" class="form-control" id="date" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tambahan</label>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="costume" value="25000"><label class="form-check-label" for="costume">Kostum (Rp25.000)</label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="extraPerson" value="20000"><label class="form-check-label" for="extraPerson">Tambah Orang (Rp20.000)</label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="pet" value="20000"><label class="form-check-label" for="pet">Bawa Hewan (Rp20.000)</label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="singlePrint" value="10000"><label class="form-check-label" for="singlePrint">Cetak Foto Tambahan (Rp10.000)</label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="gridPhoto" value="15000"><label class="form-check-label" for="gridPhoto">Grid Foto (Rp15.000)</label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="colorEdit" value="10000"><label class="form-check-label" for="colorEdit">Warna Tambahan (Rp10.000)</label></div>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">Booking Sekarang</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const pakageSelect = document.getElementById("pakageType");
+  const packageSelect = document.getElementById("package");
+
+  const dataPackages = {
+    pakage: [
+      { name: "Couple Package - Rp50.000", value: "couple_pakage" },
+      { name: "Friends Package - Rp70.000", value: "friends_pakage" },
+      { name: "Besties Package - Rp85.000", value: "besties_pakage" }
+    ],
+    friendly: [
+      { name: "Couple Package - Rp35.000", value: "couple_friendly" },
+      { name: "Friends Package - Rp50.000", value: "friends_friendly" },
+      { name: "Besties Package - Rp65.000", value: "besties_friendly" }
+    ],
+    kind: [
+      { name: "Couple Package - Rp60.000", value: "couple_kind" },
+      { name: "Friends Package - Rp80.000", value: "friends_kind" },
+      { name: "Besties Package - Rp100.000", value: "besties_kind" }
+    ],
+    family: [
+      { name: "Family Package - Rp75.000", value: "family_package" }
+    ]
+  };
+
+  pakageSelect.addEventListener("change", function () {
+    const selected = this.value;
+    packageSelect.innerHTML = '<option value="">-- Pilih Paket --</option>';
+
+    if (selected && dataPackages[selected]) {
+      dataPackages[selected].forEach(pkg => {
+        const option = document.createElement("option");
+        option.value = pkg.value;
+        option.textContent = pkg.name;
+        packageSelect.appendChild(option);
+      });
+      packageSelect.disabled = false;
+    } else {
+      packageSelect.disabled = true;
+    }
+  });
+</script>
+
+<script>
+
+function showTime() {
+	document.getElementById('currentTime').innerHTML = new Date().toUTCString();
+}
+showTime();
+setInterval(function () {
+	showTime();
+}, 1000);
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
